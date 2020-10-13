@@ -2,7 +2,7 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html id="top" xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>HTV Shop</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"       />
@@ -17,6 +17,9 @@
     
 </head>
 <body>
+    <a href="#top"  id="myBtn" title="top">
+        <i class="fa fa-arrow-up"></i>
+    </a>
     
     
     <form id="form1" runat="server">
@@ -277,20 +280,22 @@
             <h1 class="new_item_title"> Product </h1>     
                 <div class="row">
                 <div class="col-md-3 text-center ">
-                    <asp:DataList ID="DataList1" runat="server" Height="300px" RepeatColumns="4" RepeatDirection="Horizontal" CellSpacing="2" CellPadding="4">
+                    <asp:DataList ID="DataList1" runat="server" Height="300px" RepeatColumns="4" RepeatDirection="Horizontal" CellSpacing="2" CellPadding="4" OnItemCommand="DataList1_ItemCommand">
                         <ItemTemplate>
                             <div class="Shoes_item text-white text-center">
-                                <asp:Label ID="Label4" runat="server" ForeColor="#333333" Text="Mã sản phẩm: "></asp:Label>
-                                <asp:Label ID="Label3" runat="server" Text='<%# Bind("MaSP") %>' ForeColor="#333333"></asp:Label>
+                                <asp:Label ID="Label4" runat="server"  ForeColor="#333333" Text="Mã sản phẩm: "></asp:Label>
+                                <asp:Label ID="lbMaSp" runat="server" Text='<%# Bind("MaSP") %>' ForeColor="#333333"></asp:Label>
                                 <asp:Image ID="Image1" runat="server" Height="300px" ImageUrl='<%# Bind("anh") %>' Width="248px" />
                                 <div class="item_detail text-center">
                                     <i class="fa fa-dollar-sign d-block"></i>
                                       <asp:Label ID="lbPrice" runat="server" Text='<%# Bind("GiaBan") %>'></asp:Label><br/>
-                                    <asp:Button ID="btnThem" class="btn-add"  runat="server" Text="BUY NOW" BackColor="Transparent" BorderColor="Maroon" BorderStyle="Inset" BorderWidth="2px" CssClass="btn-add" Font-Bold="True" Font-Size="Medium" ForeColor="Black" />
+                                    <asp:LinkButton ID="btnThem" CommandName="id" CommandArgument='<%# Eval("MaSP") %>'  runat="server" Text="BUY NOW" 
+                                          BorderWidth="2px" 
+                                        CssClass="btn-add" Font-Bold="True" Font-Size="Medium" ForeColor="Black"  />
                                    
                                  </div>
-                                 <asp:Label ID="Label2" runat="server" Font-Bold="False" Font-Italic="True" Font-Size="Medium" ForeColor="#333333" Text='<%# Bind("TenSP") %>'></asp:Label><br/>
-                                 <asp:Label ID="lb2" runat="server" ForeColor="#333333">Màu: </asp:Label><asp:Label ID="Label1" runat="server" Font-Bold="False" Font-Italic="True" Font-Size="Medium" ForeColor="#333333" Text='<%# Bind("MauSac") %>'></asp:Label>
+                                 <asp:Label ID="lbTenSp" runat="server" Font-Bold="False" Font-Italic="True" Font-Size="Medium" ForeColor="#333333" Text='<%# Bind("TenSP") %>'></asp:Label><br/>
+                                 <asp:Label ID="lb" runat="server" ForeColor="#333333">Màu: </asp:Label><asp:Label ID="lbMau" runat="server" Font-Bold="False" Font-Italic="True" Font-Size="Medium" ForeColor="#333333" Text='<%# Bind("MauSac") %>'></asp:Label>
                             </div>
                         </ItemTemplate>
                     </asp:DataList>
@@ -343,17 +348,91 @@
             <p class="mb-0">Copyright © 2020 HTV Sneakers. Powered by ....</p>
         </div>
     </footer>
+    <div class="modal fade" id="mymodal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5>My Modal</h5>
+                    <button class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p>Bạn đã đăng kí thành công</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
 
+    </div>
+
+    <div class="modal fade" id="loginmodal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <asp:Label ID="Label1" runat="server" CssClass="font-weight-bold" Text="Tên Giày: "> </asp:Label>
+                    <label>&nbsp</label>
+                    <asp:Label ID="lbT" runat="server"  Text=""> </asp:Label>
+                    <label>&nbsp</label>
+                    <label>&nbsp</label>
+                    <asp:Label ID="Label2" runat="server" CssClass="font-weight-bold" Text="Màu: "> </asp:Label>
+                    <label>&nbsp</label>
+                    <asp:Label ID="lbM" runat="server"  Text=""> </asp:Label>
+                    <label>&nbsp</label>
+                    <label>&nbsp</label>
+                    <asp:Label ID="Label3" runat="server"  CssClass="font-weight-bold" Text="Giá: "> </asp:Label>
+                    <label>&nbsp</label>
+                     <asp:Label ID="lbG" runat="server"   Text=""> </asp:Label>
+                    <button class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <h3 class="text-center">Chọn Size Giày</h3>
+                    <div runat="server" id="divSize">
+
+                    </div>
+                </div>
+                <div class="modal-footer ">
+                    <button type="submit" class="btn btn-info">ADD</button>
+                    <button class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+        <asp:LinkButton ID="btnShowPopup"  runat="server" 
+                                          BorderWidth="2px" 
+                                        CssClass="btn-add" Font-Bold="True" Font-Size="Medium" ForeColor="Black" data-toggle="modal" 
+                                        data-target="#loginmodal" />
+        <script type="text/javascript">
+            function ShowPopup() {
+                $("#btnShowPopup").click();
+            }
+        </script> 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
-             $(document).on('click', 'a[href^="#"]', function (event) {
-    event.preventDefault();
+   <script>
+       $(document).on('click', 'a[href^="#"]', function (event) {
+           event.preventDefault();
 
-    $('html, body').animate({
-        scrollTop: $($.attr(this, 'href')).offset().top
-    }, 500);
-});
-    </script>
+           $('html, body').animate({
+               scrollTop: $($.attr(this, 'href')).offset().top
+           }, 500);
+       });
+   </script>
+     <script>
+         //Get the button
+         var mybutton = document.getElementById("myBtn");
+
+         // When the user scrolls down 20px from the top of the document, show the button
+         window.onscroll = function () { scrollFunction() };
+
+         function scrollFunction() {
+             if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                 mybutton.style.display = "block";
+             } else {
+                 mybutton.style.display = "none";
+             }
+         }
+     </script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
         ></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
