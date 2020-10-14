@@ -28,21 +28,30 @@
     <header id="header" class="py-2">
         <div class="container-fluid">
             <div class="row">
-               <div class="col-md-7 text-center text-md-left header-left pt-1 ">
-                    <div class="row">
-                        <div class="col-md-3 detail">
+               <div class="col-md-6 text-center text-md-left header-left pt-1 ">
+                    <div class="row pt-2">
+                        <div class="col-md-4 detail">
                             <i class="fa fa-phone"></i>
-                            <span class="mr-3">0938745361</span>
+                            <span class="mr-8">0938745361</span>
                         </div>
-                        <div class="col-md-5">
+                        <div class="col-md-6">
                             <i class="fa fa-envelope-square"></i>
                             <span>dinhhoangnguyen6399@gmail.com</span>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-5 text-center text-md-right header-right text-right mt-2 mt-md-0 ">
-                    <i class="fa fa-shopping-cart"></i>
+                <div class="col-md-6 text-center text-md-left header-right ">
+                    <div class="row">
+                        <div class="col-md-8 pt-2 text-right ">                            
+                            <asp:LinkButton ID="lbDangNhap" OnClick="lbDangNhap_Click"  runat="server" Font-Bold="True" ForeColor="Black">Login</asp:LinkButton>
+                        </div>
+                        <div class="col-md-4 text-left">
+                            <i class="fa fa-shopping-cart "></i>
+                        </div>
+                    </div>
                 </div>
+                
+                
             </div>
         </div>
     </header>
@@ -280,15 +289,15 @@
             <h1 class="new_item_title"> Product </h1>     
                 <div class="row">
                 <div class="col-md-3 text-center ">
-                    <asp:DataList ID="DataList1" runat="server" Height="300px" RepeatColumns="4" RepeatDirection="Horizontal" CellSpacing="2" CellPadding="4" OnItemCommand="DataList1_ItemCommand">
+                    <asp:DataList ID="DataList1" runat="server" Height="300px" RepeatColumns="4" RepeatDirection="Horizontal" CellSpacing="16" CellPadding="16" OnItemCommand="DataList1_ItemCommand">
                         <ItemTemplate>
-                            <div class="Shoes_item text-white text-center">
+                            <div class="Shoes_item text-center">
                                 <asp:Label ID="Label4" runat="server"  ForeColor="#333333" Text="Mã sản phẩm: "></asp:Label>
                                 <asp:Label ID="lbMaSp" runat="server" Text='<%# Bind("MaSP") %>' ForeColor="#333333"></asp:Label>
                                 <asp:Image ID="Image1" runat="server" Height="300px" ImageUrl='<%# Bind("anh") %>' Width="248px" />
                                 <div class="item_detail text-center">
                                     <i class="fa fa-dollar-sign d-block"></i>
-                                      <asp:Label ID="lbPrice" runat="server" Text='<%# Bind("GiaBan") %>'></asp:Label><br/>
+                                     
                                     <asp:LinkButton ID="btnThem" CommandName="id" CommandArgument='<%# Eval("MaSP") %>'  runat="server" Text="BUY NOW" 
                                           BorderWidth="2px" 
                                         CssClass="btn-add" Font-Bold="True" Font-Size="Medium" ForeColor="Black"  />
@@ -370,6 +379,11 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
+                    <asp:Label ID="Label3" runat="server" CssClass="font-weight-bold" Text="Mã Giày: "> </asp:Label>
+                    <label>&nbsp</label>
+                    <asp:Label ID="lbMaGiay" runat="server"  Text=""> </asp:Label>
+                    <label>&nbsp</label>
+                    <label>&nbsp</label>
                     <asp:Label ID="Label1" runat="server" CssClass="font-weight-bold" Text="Tên Giày: "> </asp:Label>
                     <label>&nbsp</label>
                     <asp:Label ID="lbT" runat="server"  Text=""> </asp:Label>
@@ -379,20 +393,51 @@
                     <label>&nbsp</label>
                     <asp:Label ID="lbM" runat="server"  Text=""> </asp:Label>
                     <label>&nbsp</label>
-                    <label>&nbsp</label>
-                    <asp:Label ID="Label3" runat="server"  CssClass="font-weight-bold" Text="Giá: "> </asp:Label>
-                    <label>&nbsp</label>
                      <asp:Label ID="lbG" runat="server"   Text=""> </asp:Label>
                     <button class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <h3 class="text-center">Chọn Size Giày</h3>
-                    <div runat="server" id="divSize">
-
+                    
+                    <h3 >Chọn Size Giày</h3>
+                    <asp:DropDownList AppendDataBoundItems="true" AutoPostBack="true"  OnSelectedIndexChanged="cbSize_SelectedIndexChanged" ID="cbSize" runat="server">
+                        <asp:listitem selected="True" text="" value="-1"></asp:listitem>
+                    </asp:DropDownList>                  
+                    <h4>Số Lượng:<asp:TextBox ID="txSoLuong" CssClass="w-25" runat="server" TextMode="Number"></asp:TextBox></h4>
+                    <div runat="server" class="mt-3">                        
+                        <h3>Giá: <asp:Label ID="lbGia" runat="server" Text=""></asp:Label></h3>
                     </div>
+                   
+
                 </div>
                 <div class="modal-footer ">
-                    <button type="submit" class="btn btn-info">ADD</button>
+                    <asp:Button ID="btnCart" CssClass="btn btn-info" OnClick="btnCart_Click" runat="server" Text="ADD" />                    
+                    <button class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+        <div class="modal fade" id="login">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5>Đăng Nhập</h5>
+                    <button class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label> User name</label>
+                            <input class="form-control" id="user_name" type="text" placeholder="Your user name"/>
+                        </div>
+                        <div class="form-group">
+                            <label> PassWord</label>
+                            <input class="form-control" id="pass" type="password" placeholder="Your user name"/>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-info">Submit</button>
                     <button class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>
@@ -401,11 +446,19 @@
     </div>
         <asp:LinkButton ID="btnShowPopup"  runat="server" 
                                           BorderWidth="2px" 
-                                        CssClass="btn-add" Font-Bold="True" Font-Size="Medium" ForeColor="Black" data-toggle="modal" 
-                                        data-target="#loginmodal" />
+                                         Font-Bold="True" Font-Size="Medium" ForeColor="Black" data-toggle="modal" 
+                                        data-target="#loginmodal" Enabled="False" />
+        <asp:LinkButton ID="btnLogin"  runat="server" 
+                                          BorderWidth="2px" 
+                                         Font-Bold="True" Font-Size="Medium" ForeColor="Black" data-toggle="modal" 
+                                        data-target="#login" Enabled="False" />
+
         <script type="text/javascript">
             function ShowPopup() {
                 $("#btnShowPopup").click();
+            }
+            function ShowLogin() {
+                $("#btnLogin").click();
             }
         </script> 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

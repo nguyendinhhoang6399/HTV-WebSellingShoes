@@ -63,7 +63,7 @@ CREATE TABLE SanPham
 		 maSize int,
 		GiaBan int,   
 		SoLuongTon int,
-		anh ntext,
+		anh nvarchar(300),
 		PRIMARY KEY(MaSP,MauSac,maSize),
 		Foreign key (MaSP) REFERENCES SanPham(MaSP),
 		 Foreign key(maSize) References Size(SizeId)
