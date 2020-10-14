@@ -42,14 +42,21 @@
                 </div>
                 <div class="col-md-6 text-center text-md-left header-right ">
                     <div class="row">
-                        <div class="col-md-8 pt-2 text-right ">                            
+                        <div class="col-md-6 pt-2 text-right ">                            
+                            <asp:LinkButton ID="lbAdmin" 
+                                runat="server" Font-Bold="True"
+                                ForeColor="Black">Admin</asp:LinkButton>
+                           
+                        </div>
+                        <div class="col-md-1 pt-2 pl-1 text-right ">                            
                             <asp:LinkButton ID="lbDangNhap" OnClick="lbDangNhap_Click" 
                                 runat="server" Font-Bold="True"
                                 ForeColor="Black">Login</asp:LinkButton>
-                            <asp:DropDownList ID="cbUser" CssClass="pt2" runat="server" AutoPostBack="True" BackColor="Transparent"></asp:DropDownList>
+                            <asp:DropDownList ID="cbUser" CssClass="pt2" runat="server" AutoPostBack="True" BackColor="Transparent" Font-Bold="True" ForeColor="Black"></asp:DropDownList>
                         </div>
-                        <div class="col-md-4 text-left">
-                            <i class="fa fa-shopping-cart "></i>
+                        <div class="col-md-5 text-left">
+                            <asp:LinkButton ID="lbCart" OnClick="lbCart_Click" runat="server" ForeColor="Black"><i class="fa fa-shopping-cart "></i></asp:LinkButton>
+                            
                         </div>
                     </div>
                 </div>
@@ -164,7 +171,7 @@
             <div class="row">
                 <div class="col-3 text-center">
                     <div class="Shoes_item text-white">
-                        <img src="img/item/zoom-pegasus-turbo-2-.jpg" alt="jd_270" class="w-100" width="50"
+                        <img src="img/item/nuxanh.jpg" alt="jd_270" class="w-100" width="50"
                             height="300"/>
                         <img src="img/item/zoom-pegasus-turbo-2-running-shoe-sQMJVQ.jpg" alt="jd_270"
                             class="item_overlay"/>
@@ -256,7 +263,7 @@
                 </div>
                 <div class="col-3 text-center">
                     <div class="Shoes_item text-white">
-                        <img src="img/item/mercurial-vapor-13-club-mg.jpg" alt="jd_270" class="w-100" width="50"
+                        <img src="img/item/pink.jpg" alt="jd_270" class="w-100" width="50"
                             height="300"/>
                         <img src="img/item/mercurial-vapor-13-club-mg-multi-ground-football-boot-HrdKrp.jpg"
                             alt="jd_270" class="item_overlay"/>

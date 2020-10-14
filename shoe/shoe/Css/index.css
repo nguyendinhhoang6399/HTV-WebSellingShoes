@@ -13,6 +13,11 @@
     padding: 15px;
     border-radius: 4px;
 }
+.im{
+    
+    border-radius:50px;
+    border:solid white 1px;
+}
 
 /* header */
 #header{

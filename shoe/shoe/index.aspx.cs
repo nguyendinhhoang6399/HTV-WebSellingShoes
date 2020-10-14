@@ -31,7 +31,7 @@ namespace shoe
             pg.DataSource = data.DefaultView;
             totalrow = data.Rows.Count;
             pg.CurrentPageIndex = curentposition;
-            pg.PageSize = 4;
+            pg.PageSize = 8;
             btnPrev.Enabled = !pg.IsFirstPage;
             btnNext.Enabled = !pg.IsLastPage;
             DataList1.DataSource = pg;
@@ -184,7 +184,8 @@ namespace shoe
                     cbUser.BorderStyle = BorderStyle.None;
                     cbUser.Items.Add(new ListItem(""+txUserName.Text+"", "-1"));
                     cbUser.Items.Add(new ListItem("logout", "1"));
-                    Session["cart"] = getUserId(txUserName.Text).ToString();
+                    string userId = getUserId(txUserName.Text);
+                    Session["cart"] = getCartId(userId);
                 }
                 else
                 {
@@ -213,6 +214,18 @@ namespace shoe
                 curentposition += 1;
                 loadData();
                 ClientScript.RegisterStartupScript(this.GetType(), "alert", "showPro();", true);
+            }
+        }
+
+        protected void lbCart_Click(object sender, EventArgs e)
+        {
+            if (Session["cart"] == null)
+            {
+                Response.Write("<script>alert('Vui Lòng Đăng nhập')</script>");
+            }
+            else
+            {
+                Response.Redirect("cart.aspx");
             }
         }
     }
