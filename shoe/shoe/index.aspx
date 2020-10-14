@@ -43,7 +43,10 @@
                 <div class="col-md-6 text-center text-md-left header-right ">
                     <div class="row">
                         <div class="col-md-8 pt-2 text-right ">                            
-                            <asp:LinkButton ID="lbDangNhap" OnClick="lbDangNhap_Click"  runat="server" Font-Bold="True" ForeColor="Black">Login</asp:LinkButton>
+                            <asp:LinkButton ID="lbDangNhap" OnClick="lbDangNhap_Click" 
+                                runat="server" Font-Bold="True"
+                                ForeColor="Black">Login</asp:LinkButton>
+                            <asp:DropDownList ID="cbUser" CssClass="pt2" runat="server" AutoPostBack="True" BackColor="Transparent"></asp:DropDownList>
                         </div>
                         <div class="col-md-4 text-left">
                             <i class="fa fa-shopping-cart "></i>
@@ -308,6 +311,8 @@
                             </div>
                         </ItemTemplate>
                     </asp:DataList>
+                    <asp:Button style="margin:5px 5px" ID="btnPrev" runat="server" Text="&lt;" OnClick="btnPrev_Click" />
+                    <asp:Button style="margin:5px 5px"  ID="btnNext" runat="server" Text="&gt;" OnClick="btnNext_Click" />
                 </div>
             </div>
           </div>   
@@ -395,7 +400,7 @@
                     <label>&nbsp</label>
                     <asp:Label ID="lbM" runat="server"  Text=""> </asp:Label>
                     <label>&nbsp</label>
-                     <asp:Label ID="lbG" runat="server"   Text=""> </asp:Label>
+                    
                     <button class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
@@ -430,16 +435,16 @@
                     <form>
                         <div class="form-group">
                             <label> User name</label>
-                            <input class="form-control" id="user_name" type="text" placeholder="Your user name"/>
-                        </div>
+                            <asp:TextBox CssClass="form-control" ID="txUserName" placeholder="Your user name" runat="server"></asp:TextBox>
+                         </div>
                         <div class="form-group">
                             <label> PassWord</label>
-                            <input class="form-control" id="pass" type="password" placeholder="Your user name"/>
+                            <asp:TextBox TextMode="Password" CssClass="form-control" ID="txPassWord" placeholder="Your Password" runat="server"></asp:TextBox>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-info">Submit</button>
+                    <asp:Button ID="btnDangNhap" CssClass="btn btn-info" OnClick="btnDangNhap_Click" runat="server" Text="ADD" />                    
                     <button class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>
@@ -454,6 +459,7 @@
                                           BorderWidth="2px" 
                                          Font-Bold="True" Font-Size="Medium" ForeColor="Black" data-toggle="modal" 
                                         data-target="#login" Enabled="False" />
+        <a id="prod" href="#product"></a>
 
         <script type="text/javascript">
             function ShowPopup() {
@@ -461,6 +467,9 @@
             }
             function ShowLogin() {
                 $("#btnLogin").click();
+            }
+            function showPro() {
+                document.getElementById('product').scrollIntoView(true);
             }
         </script> 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
