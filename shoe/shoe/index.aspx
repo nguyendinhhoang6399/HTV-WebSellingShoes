@@ -353,7 +353,9 @@
                     <div class="col md-4 footer_contact">
                         <h2>Contact</h2>
                         <p>
-                            <i class="fab fa-facebook-f"></i>
+                            <a href="https://www.facebook.com/thao.vuong.71619/">
+		                        <i class="fab fa-facebook"></i>
+                            </a>
                             <i class="fab fa-instagram"></i>
                             <i class="fab fa-youtube"></i>
                         </p>
