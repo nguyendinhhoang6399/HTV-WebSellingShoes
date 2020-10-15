@@ -261,11 +261,11 @@
         <div class="footer-detail mt-4">
             <div class="container">
                 <div class="row">
-                    <div class="col md-4 footer_about-us">
+                    <div class="col md-4 footer_about-us text-center">
                         <h2>About Us</h2>
                         <p>ISC Quang Trung, Lô 14, Đường số 5, Công viên Phần mềm Quang Trung, Q.12, Tp.HCM, Việt Nam</p>
                     </div>
-                    <div class="col md-4 footer_information">
+                    <div class="col md-4 footer_information text-center">
                         <h2>Information</h2>
                         <p>
                             <i class="fa fa-check"></i>
@@ -280,7 +280,7 @@
                             <span>Vuong Thi Thao.</span>
                         </p>
                     </div>
-                    <div class="col md-4 footer_contact">
+                    <div class="col md-4 footer_contact text-center">
                         <h2>Contact</h2>
                         <p>
                             <a href="https://www.facebook.com/thao.vuong.71619/">

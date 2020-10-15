@@ -323,6 +323,7 @@
     text-align: center;
     height: 50px;
     border: 1px solid #00FFFF;
+    border-radius:50px;
 }
 .copy-right{
     background-color: darkseagreen;
