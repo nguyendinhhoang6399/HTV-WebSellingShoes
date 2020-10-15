@@ -28,15 +28,39 @@
                     </div>                    
                 </div>
         </div>
-        <div class="container mt-3 text-center">
-            <asp:GridView CssClass="gr" ID="grCart"  runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" Height="213px" Width="753px">
+        <div class="container mt-3">
+            <asp:GridView CssClass="gr" DataKeyNames="MaSp" ID="grCart"  runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" Height="213px" Width="753px" AllowPaging="True" OnPageIndexChanging="grCart_PageIndexChanging" OnRowCancelingEdit="grCart_RowCancelingEdit" OnRowEditing="grCart_RowEditing" OnRowUpdating="grCart_RowUpdating" OnRowDeleting="grCart_RowDeleting">
                 <AlternatingRowStyle BackColor="White" />
                 <Columns>
                     <asp:BoundField DataField="MaSp" HeaderText="Mã sản phẩm" ReadOnly="True" SortExpression="MaSp" />
-                    <asp:BoundField DataField="TenSP" HeaderText="Tên sản phẩm" SortExpression="TenSP" />
-                    <asp:BoundField DataField="MauSac" HeaderText="Màu sắc" ReadOnly="True" SortExpression="MauSac" />
-                    <asp:BoundField DataField="name" HeaderText="Size" SortExpression="name" />
-                    <asp:BoundField DataField="SoLuong" HeaderText="Số lượng" SortExpression="SoLuong" />
+                    <asp:BoundField DataField="TenSP" HeaderText="Tên sản phẩm" SortExpression="TenSP" ReadOnly="True" />
+                    <asp:ImageField DataImageUrlField="anh" HeaderText="Ảnh" ReadOnly="True">
+                        <ControlStyle Height="200px" Width="200px" />
+                    </asp:ImageField>
+                    <asp:TemplateField HeaderText="Màu sắc" SortExpression="MauSac">
+                        <EditItemTemplate>
+                            <asp:Label ID="lbMauSac" runat="server" Text='<%# Eval("MauSac") %>'></asp:Label>
+                        </EditItemTemplate>
+                        <ItemTemplate>
+                            <asp:Label ID="Label2" runat="server" Text='<%# Bind("MauSac") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Size" SortExpression="name">
+                        <EditItemTemplate>
+                            <asp:Label ID="lbSize" runat="server" Text='<%# Eval("name") %>'></asp:Label>
+                        </EditItemTemplate>
+                        <ItemTemplate>
+                            <asp:Label ID="Label3" runat="server" Text='<%# Bind("name") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Số lượng" SortExpression="SoLuong">
+                        <EditItemTemplate>
+                            <asp:TextBox ID="txSoLuongUp" runat="server" Text='<%# Bind("SoLuong") %>' TextMode="Number"></asp:TextBox>
+                        </EditItemTemplate>
+                        <ItemTemplate>
+                            <asp:Label ID="Label1" runat="server" Text='<%# Bind("SoLuong") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
                     <asp:BoundField DataField="GiaBan" HeaderText="Giá Bán" ReadOnly="True" SortExpression="GiaBan" />
                     <asp:CommandField CausesValidation="false" ShowEditButton="true" SelectText="Edit">
                     <ControlStyle Font-Bold="True" ForeColor="Maroon" />
@@ -58,6 +82,7 @@
                 <SortedDescendingCellStyle BackColor="#FCF6C0" />
                 <SortedDescendingHeaderStyle BackColor="#820000" />
             </asp:GridView>
+            <h2 class="mt-3 ml-4">Tổng Tiền:<asp:Label ID="lbTongTien" runat="server" Font-Bold="True" ForeColor="#990000"></asp:Label></h2>
 
         </div>
 

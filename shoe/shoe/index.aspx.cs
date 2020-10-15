@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -12,15 +13,26 @@ namespace shoe
     {
         static int curentposition = 0;
         static int totalrow = 0;
+        
         protected void Page_Load(object sender, EventArgs e)
         {
+           
+            
             if (!IsPostBack)
             {
                 loadData();
                 lbDangNhap.Visible = true;
                 cbUser.Visible = false;
+               
+
             }
+            else
+            {
+                
+            }
+            
         }
+        
         
         void loadData()
         {
@@ -128,7 +140,8 @@ namespace shoe
         {
             if (txSoLuong.Text == String.Empty || cbSize.SelectedValue == "-1")
             {
-                Response.Write("<script>alert('Nhập đủ dữ liệu!!')</script>");
+                lbAlert.Text = "Hãy nhập đủ dữ liệu";
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", "showalert();", true);
                 ClientScript.RegisterStartupScript(this.GetType(), "alert", "ShowPopup();", true);
             }
 
@@ -148,8 +161,9 @@ namespace shoe
                         ",N'" + lbM.Text + "','" + txSoLuong.Text + "','" + lbGia.Text + "')";
                 }
                  DataTable data = KetNoi.Excutequerry(sql);
-               
-                Response.Write("<script>alert('Thêm thành công')</script>");
+
+                lbAlert.Text = "Thêm thành công";
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", "showalert();", true);
                 lbGia.Text = String.Empty;
             }
         }
@@ -157,6 +171,8 @@ namespace shoe
         protected void lbDangNhap_Click(object sender, EventArgs e)
         {
             ClientScript.RegisterStartupScript(this.GetType(), "alert", "ShowLogin();", true);
+           
+
         }
         bool kiemTraDangNhap(string userName, string passWord)
         {
@@ -169,16 +185,22 @@ namespace shoe
 
         protected void btnDangNhap_Click(object sender, EventArgs e)
         {
+           
             if(txUserName.Text==String.Empty || txPassWord.Text == String.Empty)
             {
-                Response.Write("<script>alert('Nhập đủ dữ liệu!!')</script>");
+                lbAlert.Text = "Hãy nhập đủ dữ liệu";
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", "showalert();", true);
                 ClientScript.RegisterStartupScript(this.GetType(), "alert", "ShowLogin();", true);
             }
             else
             {
                 if (kiemTraDangNhap(txUserName.Text, txPassWord.Text))
                 {
-                    Response.Write("<script>alert('Đăng nhập thành công')</script>");
+
+                    lbAlert.Text = "Đăng Nhập thành công";
+                    ClientScript.RegisterStartupScript(this.GetType(), "alert", "showalert();", true);
+                    Response.Clear();
+
                     lbDangNhap.Visible = false;
                     cbUser.Visible = true;
                     cbUser.BorderStyle = BorderStyle.None;
@@ -189,7 +211,9 @@ namespace shoe
                 }
                 else
                 {
-                    Response.Write("<script>alert('Tên đăng nhập hoặc mật khẩu không đúng!!')</script>");
+                    lbAlert.Text = "Tên Đăng nhập hoặc mật khẩu không đúng";
+                    ClientScript.RegisterStartupScript(this.GetType(), "alert", "showalert();", true);
+
                     ClientScript.RegisterStartupScript(this.GetType(), "alert", "ShowLogin();", true);
                 }
 
@@ -222,6 +246,7 @@ namespace shoe
             if (Session["cart"] == null)
             {
                 Response.Write("<script>alert('Vui Lòng Đăng nhập')</script>");
+               
             }
             else
             {

@@ -42,19 +42,19 @@
                 </div>
                 <div class="col-md-6 text-center text-md-left header-right ">
                     <div class="row">
-                        <div class="col-md-6 pt-2 text-right ">                            
+                        <div class="col-md-8 pt-2 text-right ">                            
                             <asp:LinkButton ID="lbAdmin" 
                                 runat="server" Font-Bold="True"
                                 ForeColor="Black">Admin</asp:LinkButton>
                            
                         </div>
                         <div class="col-md-1 pt-2 pl-1 text-right ">                            
-                            <asp:LinkButton ID="lbDangNhap" OnClick="lbDangNhap_Click" 
+                            <asp:LinkButton  ID="lbDangNhap" OnClick="lbDangNhap_Click" 
                                 runat="server" Font-Bold="True"
-                                ForeColor="Black">Login</asp:LinkButton>
+                                ForeColor="Black" AutoPostBack="True">Login</asp:LinkButton>
                             <asp:DropDownList ID="cbUser" CssClass="pt2" runat="server" AutoPostBack="True" BackColor="Transparent" Font-Bold="True" ForeColor="Black"></asp:DropDownList>
                         </div>
-                        <div class="col-md-5 text-left">
+                        <div class="col-md-3 text-left">
                             <asp:LinkButton ID="lbCart" OnClick="lbCart_Click" runat="server" ForeColor="Black"><i class="fa fa-shopping-cart "></i></asp:LinkButton>
                             
                         </div>
@@ -371,15 +371,15 @@
             <p class="mb-0">Copyright © 2020 HTV Sneakers. Powered by ....</p>
         </div>
     </footer>
-    <div class="modal fade" id="mymodal">
+    <div class="modal fade" id="alert">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5>My Modal</h5>
+                    <h5>Thông Báo</h5>
                     <button class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <p>Bạn đã đăng kí thành công</p>
+                    <asp:Label ID="lbAlert" runat="server" Text="Đăng nhập Thành Công"></asp:Label>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -424,7 +424,7 @@
 
                 </div>
                 <div class="modal-footer ">
-                    <asp:Button ID="btnCart" CssClass="btn btn-info" OnClick="btnCart_Click" runat="server" Text="ADD" />                    
+                    <asp:Button ID="btnCart" CssClass="btn btn-info" OnClick="btnCart_Click" en runat="server" Text="ADD" />                    
                     <button class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>
@@ -442,16 +442,16 @@
                     <form>
                         <div class="form-group">
                             <label> User name</label>
-                            <asp:TextBox CssClass="form-control" ID="txUserName" placeholder="Your user name" runat="server"></asp:TextBox>
+                            <asp:TextBox   CssClass="form-control" ID="txUserName" placeholder="Your user name" runat="server"></asp:TextBox>
                          </div>
                         <div class="form-group">
                             <label> PassWord</label>
-                            <asp:TextBox TextMode="Password" CssClass="form-control" ID="txPassWord" placeholder="Your Password" runat="server"></asp:TextBox>
+                            <asp:TextBox  TextMode="Password" CssClass="form-control" ID="txPassWord" placeholder="Your Password" runat="server" ></asp:TextBox>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <asp:Button ID="btnDangNhap" CssClass="btn btn-info" OnClick="btnDangNhap_Click" runat="server" Text="ADD" />                    
+                    <asp:Button ID="btnDangNhap"  CssClass="btn btn-info" OnClick="btnDangNhap_Click" runat="server" Text="ADD" />                    
                     <button class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>
@@ -466,6 +466,10 @@
                                           BorderWidth="2px" 
                                          Font-Bold="True" Font-Size="Medium" ForeColor="Black" data-toggle="modal" 
                                         data-target="#login" Enabled="False" />
+         <asp:LinkButton ID="showalert"  runat="server" 
+                                          BorderWidth="2px" 
+                                         Font-Bold="True" Font-Size="Medium" ForeColor="Black" data-toggle="modal" 
+                                        data-target="#alert" Enabled="False" />
         <a id="prod" href="#product"></a>
 
         <script type="text/javascript">
@@ -474,6 +478,9 @@
             }
             function ShowLogin() {
                 $("#btnLogin").click();
+            }
+            function showalert() {
+                $("#showalert").click();
             }
             function showPro() {
                 document.getElementById('product').scrollIntoView(true);
