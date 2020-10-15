@@ -51,7 +51,7 @@
                             <asp:LinkButton  ID="lbDangNhap" OnClick="lbDangNhap_Click"
                                 runat="server" Font-Bold="True"
                                 ForeColor="Black" >Login</asp:LinkButton>
-                            <asp:DropDownList ID="cbUser" CssClass="pt2" runat="server" AutoPostBack="True" BackColor="Transparent" Font-Bold="True" ForeColor="Black"></asp:DropDownList>
+                            <asp:DropDownList ID="cbUser" CssClass="pt2" runat="server" AutoPostBack="True" BackColor="Transparent" Font-Bold="True" ForeColor="Black" OnSelectedIndexChanged="cbUser_SelectedIndexChanged"></asp:DropDownList>
                         </div>
                         <div class="col-md-3 text-left">
                             <asp:LinkButton ID="lbCart" OnClick="lbCart_Click" runat="server" ForeColor="Black"><i class="fa fa-shopping-cart "></i></asp:LinkButton>
@@ -79,16 +79,18 @@
             <div class="collapse navbar-collapse" id="myMenu">
                 <ul class="navbar-nav navbar-nav--menu m-auto">
                     <li class="nav-item active">
-                        <a href="#header" class="nav-link">HOME</a>                 
+                        
+                        <a href="#header" class="nav-link">HOME</a>
                     </li>
-                    <li class="nav-item ">
-                        <a href="#product" class="nav-link">MEN</a>                    
+                    <li class="nav-item ">        
+                        <asp:LinkButton class="nav-link" ID="LinkButton1" OnClick="LinkButton1_Click1" runat="server">MEN</asp:LinkButton>
+                        
                     </li>
                     <li class="nav-item">
-                        <a href="#product" class="nav-link">WOMEN</a>                       
+                       <asp:LinkButton class="nav-link" ID="LinkButton2" OnClick="LinkButton2_Click" runat="server">WOMEN</asp:LinkButton>                 
                     </li>
                     <li class="nav-item">
-                        <a href="#product" class="nav-link">KID</a>                  
+                        <asp:LinkButton class="nav-link"  ID="LinkButton3" OnClick="LinkButton3_Click" runat="server">KID</asp:LinkButton>                                   
                     </li>
                     <li class="nav-item">
                         <a href="#new_item" class="nav-link">NEW</a>
@@ -169,62 +171,25 @@
             <h1 class="new_item_title"> New Item </h1>
             <div class="row">
                 <div class="col-3 text-center">
-                    <div class="Shoes_item text-white">
-                        <img src="img/item/nuxanh.jpg" alt="jd_270" class="w-100" width="50"
-                            height="300"/>
-                        <img src="img/item/zoom-pegasus-turbo-2-running-shoe-sQMJVQ.jpg" alt="jd_270"
-                            class="item_overlay"/>
-                        <!-- <div class="item_overlay"></div> -->
-                        <div class="item_detail">
-                            <i class="fa fa-dollar-sign d-block"></i>
-                            <a class="d-block"> BUY NOW </a>
-                            <span>172$</span>
-                        </div>
-                    </div>
-                    <p class="item_name font-weight-bold">Nike Zoom Pegasus Turbo 2</p>
-                </div>
-                <div class="col-3 text-center">
-                    <div class="Shoes_item text-white">
-                        <img src="img/item/custom-nike-air-zoom-pegasus-37.jpg" alt="jd_270" class="w-100" width="50"
-                            height="300"/>
-                        <img src="img/item/custom-nike-air-zoom-pegasus-37-shield-by-you.jpg" alt="jd_270"
-                            class="item_overlay"/>
-                        <!-- <div class="item_overlay"></div> -->
-                        <div class="item_detail">
-                            <i class="fa fa-dollar-sign d-block"></i>
-                            <a class="d-block"> BUY NOW </a>
-                            <span>160$</span>
-                        </div>
-                    </div>
-                    <p class="item_name font-weight-bold">Nike Air Zoom Pegasus 37</p>
-                </div>
-                <div class="col-3 text-center">
-                    <div class="Shoes_item text-white">
-                        <img src="img/item/blazer-mid-77.jpg" alt="jd_270" class="w-100" width="50" height="300"/>
-                        <img src="img/item/blazer-mid-77-vintage-shoe-dNWPTj.jpg" alt="jd_270" class="item_overlay"/>
-                        <!-- <div class="item_overlay"></div> -->
-                        <div class="item_detail">
-                            <i class="fa fa-dollar-sign d-block"></i>
-                            <a class="d-block"> BUY NOW </a>
-                            <span>102$</span>
-                        </div>
-                    </div>
-                    <p class="item_name font-weight-bold">Nike Blazer Mid '77 Vintage</p>
-                </div>
-                <div class="col-3 text-center">
-                    <div class="Shoes_item text-white">
-                        <img src="img/item/mercurial-vapor-13-pro-neymar-jr-fg-.jpg" alt="jd_270" class="w-100"
-                            width="50" height="300"/>
-                        <img src="img/item/mercurial-vapor-13-elite-neymar-jr-fg-football-boot-cQlM6G.jpg" alt="jd_270"
-                            class="item_overlay"/>
-                        <!-- <div class="item_overlay"></div> -->
-                        <div class="item_detail">
-                            <i class="fa fa-dollar-sign d-block"></i>
-                            <a class="d-block"> BUY NOW </a>
-                            <span>172$</span>
-                        </div>
-                    </div>
-                    <p class="item_name font-weight-bold">Mercurial Vapor 13 Pro neymarjr Fg-</p>
+                    <asp:DataList ID="grnew" runat="server" Height="300px" RepeatColumns="4" RepeatDirection="Horizontal" CellSpacing="16" CellPadding="16" OnItemCommand="grnew_ItemCommand">
+                        <ItemTemplate>
+                            <div class="Shoes_item text-center">
+                                <asp:Label ID="Label4" runat="server"  ForeColor="#333333" Text="Mã sản phẩm: "></asp:Label>
+                                <asp:Label ID="lbMaSp" runat="server" Text='<%# Bind("MaSP") %>' ForeColor="#333333"></asp:Label>
+                                <asp:Image ID="Image1" runat="server" Height="300px" ImageUrl='<%# Bind("anh") %>' Width="248px" />
+                                <div class="item_detail text-center">
+                                    <i class="fa fa-dollar-sign d-block"></i>
+                                     
+                                    <asp:LinkButton ID="btnThem" CommandName="id" CommandArgument='<%# Eval("MaSP") %>'  runat="server" Text="BUY NOW" 
+                                          BorderWidth="2px" 
+                                        CssClass="btn-add" Font-Bold="True" Font-Size="Medium" ForeColor="Black"  />
+                                   
+                                 </div>
+                                 <asp:Label ID="lbTenSp" runat="server" Font-Bold="False" Font-Italic="True" Font-Size="Medium" ForeColor="#333333" Text='<%# Bind("TenSP") %>'></asp:Label><br/>
+                                 <asp:Label ID="lb" runat="server" ForeColor="#333333">Màu: </asp:Label><asp:Label ID="lbMau" runat="server" Font-Bold="False" Font-Italic="True" Font-Size="Medium" ForeColor="#333333" Text='<%# Bind("MauSac") %>'></asp:Label>
+                            </div>
+                        </ItemTemplate>
+                    </asp:DataList>
                 </div>
             </div>
         </div>
@@ -235,59 +200,25 @@
             <h1 class="new_item_title"> Best Seller </h1>
             <div class="row">
                 <div class="col-3 text-center">
-                    <div class="Shoes_item text-white">
-                        <img src="img/item/novice-.jpg" alt="jd_270" class="w-100" width="50" height="300"/>
-                        <img src="img/item/novice-younger-shoe-9T3BHG.jpg" alt="jd_270" class="item_overlay"/>
-                        <!-- <div class="item_overlay"></div> -->
-                        <div class="item_detail">
-                            <i class="fa fa-dollar-sign d-block"></i>
-                            <a class="d-block"> BUY NOW </a>
-                            <span>160$</span>
-                        </div>
-                    </div>
-                    <p class="item_name font-weight-bold">Nike Novice</p>
-                </div>
-                <div class="col-3 text-center">
-                    <div class="Shoes_item text-white">
-                        <img src="img/item/jordan-zoom-92-.jpg" alt="jd_270" class="w-100" width="50" height="300"/>
-                        <img src="img/item/jordan-zoom-92-shoe-0kfcnp.jpg" alt="jd_270" class="item_overlay"/>
-                        <!-- <div class="item_overlay"></div> -->
-                        <div class="item_detail">
-                            <i class="fa fa-dollar-sign d-block"></i>
-                            <a class="d-block"> BUY NOW </a>
-                            <span>172$</span>
-                        </div>
-                    </div>
-                    <p class="item_name font-weight-bold">Nike Jordan Zoom '92</p>
-                </div>
-                <div class="col-3 text-center">
-                    <div class="Shoes_item text-white">
-                        <img src="img/item/pink.jpg" alt="jd_270" class="w-100" width="50"
-                            height="300"/>
-                        <img src="img/item/mercurial-vapor-13-club-mg-multi-ground-football-boot-HrdKrp.jpg"
-                            alt="jd_270" class="item_overlay"/>
-                        <!-- <div class="item_overlay"></div> -->
-                        <div class="item_detail">
-                            <i class="fa fa-dollar-sign d-block"></i>
-                            <a class="d-block"> BUY NOW </a>
-                            <span>102$</span>
-                        </div>
-                    </div>
-                    <p class="item_name font-weight-bold">Mercurial Vapor 13 Club Mg</p>
-                </div>
-                <div class="col-3 text-center">
-                    <div class="Shoes_item text-white">
-                        <img src="img/item/custom-air-max-95-unlocked-by-you.jpg" alt="jd_270" class="w-100" width="50"
-                            height="300"/>
-                        <img src="img/item/custom-air-max-95-unlocked-by-you (1).jpg" alt="jd_270" class="item_overlay"/>
-                        <!-- <div class="item_overlay"></div> -->
-                        <div class="item_detail">
-                            <i class="fa fa-dollar-sign d-block"></i>
-                            <a class="d-block"> BUY NOW </a>
-                            <span>172$</span>
-                        </div>
-                    </div>
-                    <p class="item_name font-weight-bold">Air Max 95 Unlocked By You</p>
+                    <asp:DataList ID="grBest" runat="server" Height="300px" RepeatColumns="4" RepeatDirection="Horizontal" CellSpacing="16" CellPadding="16" OnItemCommand="grBest_ItemCommand">
+                        <ItemTemplate>
+                            <div class="Shoes_item text-center">
+                                <asp:Label ID="Label4" runat="server"  ForeColor="#333333" Text="Mã sản phẩm: "></asp:Label>
+                                <asp:Label ID="lbMaSp" runat="server" Text='<%# Bind("MaSP") %>' ForeColor="#333333"></asp:Label>
+                                <asp:Image ID="Image1" runat="server" Height="300px" ImageUrl='<%# Bind("anh") %>' Width="248px" />
+                                <div class="item_detail text-center">
+                                    <i class="fa fa-dollar-sign d-block"></i>
+                                     
+                                    <asp:LinkButton ID="btnThem" CommandName="id" CommandArgument='<%# Eval("MaSP") %>'  runat="server" Text="BUY NOW" 
+                                          BorderWidth="2px" 
+                                        CssClass="btn-add" Font-Bold="True" Font-Size="Medium" ForeColor="Black"  />
+                                   
+                                 </div>
+                                 <asp:Label ID="lbTenSp" runat="server" Font-Bold="False" Font-Italic="True" Font-Size="Medium" ForeColor="#333333" Text='<%# Bind("TenSP") %>'></asp:Label><br/>
+                                 <asp:Label ID="lb" runat="server" ForeColor="#333333">Màu: </asp:Label><asp:Label ID="lbMau" runat="server" Font-Bold="False" Font-Italic="True" Font-Size="Medium" ForeColor="#333333" Text='<%# Bind("MauSac") %>'></asp:Label>
+                            </div>
+                        </ItemTemplate>
+                    </asp:DataList>
                 </div>
             </div>            
         </div>
@@ -457,20 +388,20 @@
         </div>
 
     </div>
-        <asp:LinkButton ID="btnShowPopup"  runat="server" 
+        <asp:LinkButton ID="btnShowPopup" CssClass="d-none"  runat="server" 
                                           BorderWidth="2px" 
                                          Font-Bold="True" Font-Size="Medium" ForeColor="Black" data-toggle="modal" 
                                         data-target="#loginmodal" Enabled="False" />
-        <asp:LinkButton ID="btnLogin"  runat="server" 
+        <asp:LinkButton ID="btnLogin"  CssClass="d-none"  runat="server" 
                                           BorderWidth="2px" 
                                          Font-Bold="True" Font-Size="Medium" ForeColor="Black" data-toggle="modal" 
                                         data-target="#login" Enabled="false" />
-         <asp:LinkButton ID="showalert"  runat="server" 
+         <asp:LinkButton ID="showalert"  CssClass="d-none"  runat="server" 
                                           BorderWidth="2px" 
                                          Font-Bold="True" Font-Size="Medium" ForeColor="Black" data-toggle="modal" 
                                         data-target="#alert" Enabled="False" />
         <a id="prod" href="#product"></a>
-
+        <a runat="server"  id="produc" href="#product" class="nav-link d-none">MEN</a>
        
   <script type="text/javascript">
             function ShowPopup() {
@@ -482,11 +413,14 @@
             function showalert() {
                 $("#showalert").click();
             }
+      function showProduc() {
+          $("#produc").click();
+      }
             function showPro() {
                 document.getElementById('product').scrollIntoView(true);
       }
       
-        </script>    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  </script>    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
    <script>
        $(document).on('click', 'a[href^="#"]', function (event) {
            event.preventDefault();

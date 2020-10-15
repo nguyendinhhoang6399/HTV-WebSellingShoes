@@ -13,6 +13,7 @@ namespace shoe
     {
         static int curentposition = 0;
         static int totalrow = 0;
+        static string user = "";
         
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -21,6 +22,8 @@ namespace shoe
             if (!IsPostBack)
             {
                 loadData();
+                loadBest();
+                loadNew();
                 lbDangNhap.Visible = true;
                 cbUser.Visible = false;
                
@@ -32,12 +35,24 @@ namespace shoe
             }
             
         }
-        
-        
+        void loadNew()
+        {
+            string sql = "select DISTINCT  top 4   S.maSP,S.TenSP,C.MauSac,C.anh from CTSP C,SanPham S where C.maSP = S.MaSP order by S.MaSP DESC";
+            DataTable data = KetNoi.Excutequerry(sql);
+            grnew.DataSource = data;
+            grnew.DataBind();
+        }
+        void loadBest()
+        {
+            string sql = "select DISTINCT  top 4 S.maSP,S.TenSP,C.MauSac,C.anh from CTSP C,SanPham S where C.maSP = S.MaSP ";
+            DataTable data = KetNoi.Excutequerry(sql);
+            grBest.DataSource = data;
+            grBest.DataBind();
+        }
         void loadData()
         {
             PagedDataSource pg = new PagedDataSource();
-            String sql = "  select DISTINCT S.maSP,S.TenSP,C.MauSac,C.anh from CTSP C,SanPham S where C.maSP = S.MaSP";
+            String sql = "  select DISTINCT S.maSP,S.TenSP,C.MauSac,C.anh from CTSP C,SanPham S where C.maSP = S.MaSP and S.TenSP like N'%"+user+"%'";
             DataTable data = KetNoi.Excutequerry(sql);
             pg.AllowPaging = true;
             pg.DataSource = data.DefaultView;
@@ -232,6 +247,7 @@ namespace shoe
             else
             {
                 curentposition += 1;
+               
                 loadData();
                 ClientScript.RegisterStartupScript(this.GetType(), "alert", "showPro();", true);
             }
@@ -247,6 +263,84 @@ namespace shoe
             else
             {
                 Response.Redirect("cart.aspx");
+            }
+        }
+
+
+        protected void LinkButton1_Click1(object sender, EventArgs e)
+        {
+            user = "Nam";
+            loadData();
+            ClientScript.RegisterStartupScript(this.GetType(), "alert", "showProduc();", true);
+        }
+
+        protected void LinkButton2_Click(object sender, EventArgs e)
+        {
+            user = "Nữ";
+            loadData();
+            ClientScript.RegisterStartupScript(this.GetType(), "alert", "showProduc();", true);
+        }
+
+        protected void LinkButton3_Click(object sender, EventArgs e)
+        {
+            user = "trẻ Em";
+            loadData();
+            ClientScript.RegisterStartupScript(this.GetType(), "alert", "showProduc();", true);
+        }
+
+        protected void cbUser_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbUser.SelectedIndex == 1)
+            {
+                Session["cart"] = null;
+                cbUser.Visible = false;
+                lbDangNhap.Visible = true;
+            }
+        }
+
+        protected void grnew_ItemCommand(object source, DataListCommandEventArgs e)
+        {
+            if (Session["cart"] == null)
+            {
+                Response.Write("<script>alert('Vui Lòng đăng nhập')</script>");
+            }
+            else
+            {
+                Label lbMau = null;
+                Label lbTenSP = null;
+                grnew.SelectedIndex = e.Item.ItemIndex;
+                lbMau = grnew.SelectedItem.FindControl("lbMau") as Label;
+                lbTenSP = grnew.SelectedItem.FindControl("lbTenSp") as Label;
+                Label lbMaSp = grnew.SelectedItem.FindControl("lbMaSp") as Label;
+                lbT.Text = lbTenSP.Text;
+                lbM.Text = lbMau.Text;
+                LoadSize(int.Parse(lbMaSp.Text), lbMau.Text);
+                cbSize.SelectedIndex = 0;
+                lbMaGiay.Text = lbMaSp.Text;
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", "ShowPopup();", true);
+            }
+        }
+
+        protected void grBest_ItemCommand(object source, DataListCommandEventArgs e)
+        {
+            if (Session["cart"] == null)
+            {
+                Response.Write("<script>alert('Vui Lòng đăng nhập')</script>");
+            }
+            else
+            {
+                Label lbMau = null;
+                Label lbTenSP = null;
+                grBest.SelectedIndex = e.Item.ItemIndex;
+                lbMau = grBest.SelectedItem.FindControl("lbMau") as Label;
+                lbTenSP = grBest.SelectedItem.FindControl("lbTenSp") as Label;
+                Label lbMaSp = grBest.SelectedItem.FindControl("lbMaSp") as Label;
+                lbT.Text = lbTenSP.Text;
+                lbM.Text = lbMau.Text;
+                LoadSize(int.Parse(lbMaSp.Text), lbMau.Text);
+                cbSize.SelectedIndex = 0;
+                lbMaGiay.Text = lbMaSp.Text;
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", "ShowPopup();", true);
             }
         }
     }

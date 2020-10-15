@@ -16,8 +16,10 @@
            
                 <div class="row text-center mt-3">
                     <div class="col-md-4">
-                        <img src="img/logo1.JPG" alt="logo" width="100" height="100"/>
-                    <img src="img/logoText.JPG" alt="text" width="170" height="170"/>
+                        <a href="index.aspx">
+                            <img src="img/logo1.JPG" alt="logo" width="100" height="100"/>
+                            <img src="img/logoText.JPG" alt="text" width="170" height="170"/>
+                        </a>
                     </div>
                     <div class="col-md-4">
                         <h1 class="mt-5">Cart Detail</h1>
@@ -82,7 +84,7 @@
                 <SortedDescendingCellStyle BackColor="#FCF6C0" />
                 <SortedDescendingHeaderStyle BackColor="#820000" />
             </asp:GridView>
-            <h2 class="mt-3 ml-4">Tổng Tiền:<asp:Label ID="lbTongTien" runat="server" Font-Bold="True" ForeColor="#990000"></asp:Label></h2>
+            <h2 class="mt-3 ml-5 pl-5">Tổng Tiền:<asp:Label ID="lbTongTien" runat="server" Font-Bold="True" ForeColor="#990000"></asp:Label></h2>
 
         </div>
 
