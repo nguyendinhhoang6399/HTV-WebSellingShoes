@@ -140,6 +140,7 @@
     <Content Include="img\snea.png" />
     <Content Include="img\thương-hiệu-giày-nam-nổi-tiếng-18.jpg" />
     <Content Include="img\unnamed.jpg" />
+    <Content Include="img\users\cristiano-nike.png" />
     <Content Include="index.aspx" />
     <Content Include="manageProduct.aspx" />
     <Content Include="manaProd_detail.aspx" />

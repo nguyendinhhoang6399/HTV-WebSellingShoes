@@ -394,7 +394,7 @@
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <asp:Button ID="btnDangNhap" CssClass="btn btn-info" OnClick="btnDangNhap_Click" runat="server" Text="ADD" />
+                        <asp:Button ID="btnDangNhap" CssClass="btn btn-info" OnClick="btnDangNhap_Click" runat="server" Text="Login" />
                         <button class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
                 </div>

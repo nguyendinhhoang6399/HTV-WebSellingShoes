@@ -14,13 +14,12 @@ namespace shoe
         static int curentposition = 0;
         static int totalrow = 0;
         static string user = "";
-        
         protected void Page_Load(object sender, EventArgs e)
         {
-           
-            
+
             if (!IsPostBack)
             {
+
                 loadData();
                 loadBest();
                 loadNew();
@@ -102,6 +101,14 @@ namespace shoe
             DataTable data = KetNoi.Excutequerry(sql);
             foreach (DataRow row in data.Rows)
                 return row["cartId"].ToString();
+            return "";
+        }
+        string getLoaiTK(string userid)
+        {
+            string sql = "select TK.tenloaitk from users U,loaitk TK where TK.loaitk=U.loaitk and U.userid = '" + userid + "'";
+            DataTable data = KetNoi.Excutequerry(sql);
+            foreach (DataRow row in data.Rows)
+                return row["tenloaitk"].ToString();
             return "";
         }
         protected void DataList1_ItemCommand(object source, DataListCommandEventArgs e)
@@ -219,6 +226,7 @@ namespace shoe
                     cbUser.Items.Add(new ListItem(""+txUserName.Text+"", "-1"));
                     cbUser.Items.Add(new ListItem("logout", "1"));
                     string userId = getUserId(txUserName.Text);
+                    Session["loaiTK"] = getLoaiTK(userId);
                     Session["cart"] = getCartId(userId);
                 }
                 else
@@ -346,7 +354,17 @@ namespace shoe
 
         protected void lbAdmin_Click(object sender, EventArgs e)
         {
-
+            string loaitk = Session["loaiTK"] as string;
+            if (loaitk == "Admin")
+            {
+                Response.Redirect("manageProduct.aspx");
+            }
+            else
+            {
+                Response.Write("<script>alert('"+loaitk+"')</script>");
+                Response.Write("<script>alert('Vui Lòng Đăng nhập tài khoản admin')</script>");
+            }
+            
         }
     }
 }
