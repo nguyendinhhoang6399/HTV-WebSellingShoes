@@ -343,5 +343,10 @@ namespace shoe
                 ClientScript.RegisterStartupScript(this.GetType(), "alert", "ShowPopup();", true);
             }
         }
+
+        protected void lbAdmin_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

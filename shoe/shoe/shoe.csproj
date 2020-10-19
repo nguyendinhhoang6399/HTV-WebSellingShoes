@@ -82,6 +82,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Css\cart.css" />
     <Content Include="Css\index.css" />
+    <Content Include="Css\manageProduct.css" />
     <Content Include="img\aa_banner_nike.jpg" />
     <Content Include="img\abc.jpg" />
     <Content Include="img\attachment_63681242.jpg" />
@@ -140,6 +141,8 @@
     <Content Include="img\thương-hiệu-giày-nam-nổi-tiếng-18.jpg" />
     <Content Include="img\unnamed.jpg" />
     <Content Include="index.aspx" />
+    <Content Include="manageProduct.aspx" />
+    <Content Include="manaProd_detail.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -268,6 +271,20 @@
       <DependentUpon>index.aspx</DependentUpon>
     </Compile>
     <Compile Include="KetNoi.cs" />
+    <Compile Include="manageProduct.aspx.cs">
+      <DependentUpon>manageProduct.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="manageProduct.aspx.designer.cs">
+      <DependentUpon>manageProduct.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="manaProd_detail.aspx.cs">
+      <DependentUpon>manaProd_detail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="manaProd_detail.aspx.designer.cs">
+      <DependentUpon>manaProd_detail.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
