@@ -223,6 +223,7 @@ namespace shoe
                     lbDangNhap.Visible = false;
                     cbUser.Visible = true;
                     cbUser.BorderStyle = BorderStyle.None;
+                    cbUser.Items.Clear();
                     cbUser.Items.Add(new ListItem(""+txUserName.Text+"", "-1"));
                     cbUser.Items.Add(new ListItem("logout", "1"));
                     string userId = getUserId(txUserName.Text);
@@ -361,7 +362,7 @@ namespace shoe
             }
             else
             {
-                Response.Write("<script>alert('"+loaitk+"')</script>");
+              
                 Response.Write("<script>alert('Vui Lòng Đăng nhập tài khoản admin')</script>");
             }
             

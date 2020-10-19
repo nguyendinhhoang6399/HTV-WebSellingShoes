@@ -72,7 +72,7 @@ namespace shoe
             string url = "";
             if (Page.IsValid && UploadImg.HasFile && CheckFileType(UploadImg.FileName))
             {
-                string fileName = "images/" + UploadImg.FileName;
+                string fileName = "img/item/" + UploadImg.FileName;
                 string filePath = MapPath(fileName);
                 UploadImg.SaveAs(filePath);
                 Image1.ImageUrl = fileName;
@@ -85,7 +85,7 @@ namespace shoe
             }
             else
             {
-                String sql = "Insert into CTSP(mausac,masize,giaban,soluongton,anh) values(N'" + txMauSac.Text + "',N'" + DropSize.SelectedValue + "',N'" + txGiaBan.Text + "',N'" + txSoLuong.Text + "',N'" + url + "')";
+                String sql = "Insert into CTSP(maSp,mausac,masize,giaban,soluongton,anh) values('"+masp+"',N'" + txMauSac.Text + "',N'" + DropSize.SelectedValue + "',N'" + txGiaBan.Text + "',N'" + txSoLuong.Text + "',N'" + url + "')";
                 Response.Write("<script>alert('Thêm thành công!!')</script>");
                 DataTable data = KetNoi.Excutequerry(sql);
                 LoadGrCTSP();
@@ -125,12 +125,29 @@ namespace shoe
         protected void GrvCTSP_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
             GridViewRow row = GrvCTSP.Rows[e.RowIndex];
-            string MaSp = GrvCTSP.DataKeys[e.RowIndex].Value.ToString();
+            
             Label mausac = (Label)row.FindControl("lbMauSac");
             Label size = (Label)row.FindControl("lbSize");
             TextBox gia = (TextBox)row.FindControl("txtGiaBan");
             TextBox sl = (TextBox)row.FindControl("txSoLuongUp");
-            //FileUpload file = 
+            FileUpload file = (FileUpload)row.FindControl("UploadImg");
+            string sql = "";
+            if (file.HasFile)
+            {
+                file.SaveAs(Server.MapPath("img/item/") + file.FileName);
+                sql = "Update CTSP set anh='~/img/item/" + file.FileName + "', SoLuongTon='" + sl.Text + "', GiaBan='" + gia.Text + "' where maSp='" + masp + "'" +
+                    "and MauSac=N'" + mausac.Text + "' and maSize='" + getsizeid(size.Text) + "'";
+            }
+            else
+            {
+                sql = "Update CTSP set  SoLuongTon='" + sl.Text + "', GiaBan='" + gia.Text + "' where maSp='" + masp + "'" +
+                    "and MauSac=N'" + mausac.Text + "' and maSize='" + getsizeid(size.Text) + "'";
+            }
+            DataTable data = KetNoi.Excutequerry(sql);
+            Response.Write("<script>alert('Sửa thành công!!')</script>");
+            GrvCTSP.EditIndex = -1;
+            LoadGrCTSP();
+
 
         }
 
