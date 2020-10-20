@@ -41,17 +41,23 @@
                     </div>
                     <div class="col-md-6 text-center text-md-left header-right ">
                         <div class="row">
-                            <div class="col-md-8 pt-2 text-right ">
+                            <div class="col-md-7 pt-2 text-right p-0 ">
                                 <asp:LinkButton ID="lbAdmin"
                                     runat="server" OnClick="lbAdmin_Click" Font-Bold="True"
                                     ForeColor="Black">Admin</asp:LinkButton>
 
                             </div>
-                            <div class="col-md-1 pt-2 pl-1 text-right ">
+                             <div class="col-md-1 pt-2 text-center ">                            
+                            <asp:LinkButton ID="LinkButton4" 
+                                runat="server" Font-Bold="True"
+                                ForeColor="Black" OnClick="LinkButton4_Click">Signup</asp:LinkButton>
+                           
+                        </div>
+                            <div class="col-md-1 pt-2 text-right ">
                                 <asp:LinkButton ID="lbDangNhap" OnClick="lbDangNhap_Click"
                                     runat="server" Font-Bold="True"
                                     ForeColor="Black">Login</asp:LinkButton>
-                                <asp:DropDownList ID="cbUser" CssClass="pt2" runat="server" AutoPostBack="True" BackColor="Transparent" Font-Bold="True" ForeColor="Black" OnSelectedIndexChanged="cbUser_SelectedIndexChanged"></asp:DropDownList>
+                                <asp:DropDownList ID="cbUser" CssClass="pt2 mr-3" runat="server" AutoPostBack="True" BackColor="Transparent" Font-Bold="True" ForeColor="Black" OnSelectedIndexChanged="cbUser_SelectedIndexChanged"></asp:DropDownList>
                             </div>
                             <div class="col-md-3 text-left">
                                 <asp:LinkButton ID="lbCart" OnClick="lbCart_Click" runat="server" ForeColor="Black"><i class="fa fa-shopping-cart "></i></asp:LinkButton>

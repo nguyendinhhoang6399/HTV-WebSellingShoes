@@ -11,11 +11,13 @@ namespace shoe
 {
     public partial class index : System.Web.UI.Page
     {
-        static int curentposition = 0;
+         
+    static int curentposition = 0;
         static int totalrow = 0;
         static string user = "";
         protected void Page_Load(object sender, EventArgs e)
         {
+            
 
             if (!IsPostBack)
             {
@@ -25,7 +27,28 @@ namespace shoe
                 loadNew();
                 lbDangNhap.Visible = true;
                 cbUser.Visible = false;
-               
+                if (Session["loaiTK"] == null || Session["cart"] == null)
+                {
+                   
+                    lbDangNhap.Visible = true;
+                    cbUser.Visible = false;
+                }
+                else
+                {
+                    
+
+                    lbDangNhap.Visible = false;
+                    cbUser.Visible = true;
+                    string cartId = Session["cart"] as string;
+                    string username = getUserName(cartId);
+                    cbUser.Items.Clear();
+                    cbUser.Items.Add(new ListItem("" + username + "", "-1"));
+                    cbUser.Items.Add(new ListItem("logout", "1"));
+                    cbUser.BorderStyle = BorderStyle.None;
+
+                }
+
+
 
             }
             else
@@ -203,7 +226,14 @@ namespace shoe
                 return true;
             return false;
         }
-
+        string getUserName(string cartId)
+        {
+            string sql = "select U.UserName from Cart C,Users U where U.userId=C.userId and C.Cartid='" + cartId + "'";
+            DataTable data = KetNoi.Excutequerry(sql);
+            foreach (DataRow row in data.Rows)
+                return row["UserName"].ToString();
+            return "";
+        }
         protected void btnDangNhap_Click(object sender, EventArgs e)
         {
            
@@ -299,9 +329,13 @@ namespace shoe
 
         protected void cbUser_SelectedIndexChanged(object sender, EventArgs e)
         {
+           
             if (cbUser.SelectedIndex == 1)
             {
+                Response.Write("<script>alert('Here')</script>");
+
                 Session["cart"] = null;
+                Session["loaiTK"] = null;
                 cbUser.Visible = false;
                 lbDangNhap.Visible = true;
             }
@@ -366,6 +400,11 @@ namespace shoe
                 Response.Write("<script>alert('Vui Lòng Đăng nhập tài khoản admin')</script>");
             }
             
+        }
+
+        protected void LinkButton4_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("login.aspx");
         }
     }
 }
