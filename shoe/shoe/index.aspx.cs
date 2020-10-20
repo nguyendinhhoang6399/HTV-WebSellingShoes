@@ -406,5 +406,30 @@ namespace shoe
         {
             Response.Redirect("login.aspx");
         }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            TimKiem(txttim.Text);
+        }
+        void TimKiem(String tk)
+        {
+            if (tk != "")
+            {
+                PagedDataSource pg = new PagedDataSource();
+                String sql = "select DISTINCT S.maSP,S.TenSP,C.MauSac,C.anh from CTSP C,SanPham S,ShoeType b where C.maSP = S.MaSP and b.TypeId=S.TypeId and b.Name like N'%" + txttim.Text + "%'";
+                DataTable data = KetNoi.Excutequerry(sql);
+                Console.WriteLine(data.Rows.Count);
+                Console.WriteLine(sql);
+                pg.AllowPaging = true;
+                pg.DataSource = data.DefaultView;
+                totalrow = data.Rows.Count;
+                pg.CurrentPageIndex = curentposition;
+                pg.PageSize = 8;
+                btnPrev.Enabled = !pg.IsFirstPage;
+                btnNext.Enabled = !pg.IsLastPage;
+                DataList1.DataSource = pg;
+                DataList1.DataBind();
+            }
+        }
     }
 }

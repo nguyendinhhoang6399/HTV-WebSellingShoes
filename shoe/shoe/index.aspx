@@ -107,8 +107,8 @@
                     </ul>
                 </div>
                 <div class="search">
-                    <input type="text" placeholder="Input keyword" />
-                    <i class="fa fa-search"></i>
+                    <asp:TextBox ID="txttim" runat="server" Height="20px" Width="90px"></asp:TextBox>
+                    <asp:Button ID="Button1" runat="server" Height="30px" OnClick="Button1_Click" Text="Tìm Kiếm" Width="84px" />
                 </div>
             </div>
         </nav>
