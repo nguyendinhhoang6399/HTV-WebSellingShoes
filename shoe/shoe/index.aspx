@@ -299,9 +299,13 @@
                                 <a href="https://www.facebook.com/thao.vuong.71619/">
                                     <i class="fab fa-facebook"></i>
                                 </a>
-                                <i class="fab fa-instagram"></i>
-                                <i class="fab fa-youtube"></i>
-                            </p>
+                                <a href="https://www.instagram.com/giay_anh_manh_ban/?hl=vi">
+                                 <i class="fab fa-instagram"></i>
+                                </a>
+                               <a href="https://www.youtube.com/watch?v=X4JdOckb6lQ">
+                                   <i class="fab fa-youtube"></i>
+                               </a>
+                                </p>
                             <p>
                                 <img src="img/duong-quoc-cuong-thong-bao-bo-cong-thuong.png" alt="thongbao" width="170"
                                     height="50" />
