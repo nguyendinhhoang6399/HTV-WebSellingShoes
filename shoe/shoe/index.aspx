@@ -53,14 +53,14 @@
                                 ForeColor="Black" OnClick="LinkButton4_Click">Signup</asp:LinkButton>
                            
                         </div>
-                            <div class="col-md-1 pt-2 text-right ">
+                            <div class="col-md-1 pt-2  ">
                                 <asp:LinkButton ID="lbDangNhap" OnClick="lbDangNhap_Click"
                                     runat="server" Font-Bold="True"
                                     ForeColor="Black">Login</asp:LinkButton>
-                                <asp:DropDownList ID="cbUser" CssClass="pt2 mr-3" runat="server" AutoPostBack="True" BackColor="Transparent" Font-Bold="True" ForeColor="Black" OnSelectedIndexChanged="cbUser_SelectedIndexChanged"></asp:DropDownList>
+                                <asp:DropDownList ID="cbUser" CssClass="text-center" runat="server" AutoPostBack="True" BackColor="Transparent" Font-Bold="True" ForeColor="Black" OnSelectedIndexChanged="cbUser_SelectedIndexChanged"></asp:DropDownList>
                             </div>
                             <div class="col-md-3 text-left">
-                                <asp:LinkButton ID="lbCart" OnClick="lbCart_Click" runat="server" ForeColor="Black"><i class="fa fa-shopping-cart "></i></asp:LinkButton>
+                                <asp:LinkButton ID="lbCart" OnClick="lbCart_Click" runat="server" ForeColor="Black"><i class="fa fa-shopping-cart ml-2 "></i></asp:LinkButton>
 
                             </div>
                         </div>
@@ -108,7 +108,7 @@
                 </div>
                 <div class="search">
                     <asp:TextBox ID="txttim" runat="server" Height="20px" Width="90px"></asp:TextBox>
-                    <asp:Button ID="Button1" runat="server" Height="30px" OnClick="Button1_Click" Text="Tìm Kiếm" Width="84px" />
+                    <asp:Button ID="Button1" CssClass="btn btn-info" runat="server"  OnClick="Button1_Click" Text="Tìm Kiếm"  />
                 </div>
             </div>
         </nav>
@@ -313,7 +313,7 @@
                         </div>
                         <div class="col md-3 footer_location text-center">
                             <h2>Location</h2>
-                            <p>100 Nguyễn Thị Thập, phường Bình Thuận, quận 7, TP HCM</p>
+                            
                             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.956600442545!2d106.72322565045467!3d10.737828392310137!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3175257dc3f55293%3A0x90086bc9c8e821b2!2zMTAwIE5ndXnhu4VuIFRo4buLIFRo4bqtcCwgQsOsbmggVGh14bqtbiwgUXXhuq1uIDcsIFRow6BuaCBwaOG7kSBI4buTIENow60gTWluaCwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1602509307475!5m2!1svi!2s" width="400" height="155" frameborder="0" style="border: 0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
                         </div>
                     </div>

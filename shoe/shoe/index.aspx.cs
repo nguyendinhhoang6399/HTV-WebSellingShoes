@@ -213,8 +213,7 @@ namespace shoe
 
         protected void lbDangNhap_Click(object sender, EventArgs e)
         {
-            ClientScript.RegisterStartupScript(this.GetType(), "alert", "ShowLogin();", true);
-            //Response.Write("<script> alert('Xóa thành công') </script>");
+            ClientScript.RegisterStartupScript(this.GetType(), "alert", "ShowLogin();", true);     
            
 
         }
@@ -332,8 +331,6 @@ namespace shoe
            
             if (cbUser.SelectedIndex == 1)
             {
-                Response.Write("<script>alert('Here')</script>");
-
                 Session["cart"] = null;
                 Session["loaiTK"] = null;
                 cbUser.Visible = false;
@@ -409,7 +406,10 @@ namespace shoe
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            TimKiem(txttim.Text);
+            //  TimKiem(txttim.Text);
+            user = txttim.Text;
+            loadData();
+            ClientScript.RegisterStartupScript(this.GetType(), "alert", "showProduc();", true);
         }
         void TimKiem(String tk)
         {
@@ -429,6 +429,7 @@ namespace shoe
                 btnNext.Enabled = !pg.IsLastPage;
                 DataList1.DataSource = pg;
                 DataList1.DataBind();
+              //  
             }
         }
     }

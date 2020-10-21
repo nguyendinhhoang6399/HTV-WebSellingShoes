@@ -67,6 +67,14 @@ namespace shoe
                     return false;
             }
         }
+        bool checkSP(string Mau,int size)
+        {
+            string sql = "Select * from CTSP where masp='" + masp + "' and mauSac=N'" + Mau + "' and maSize='" + size + "'";
+            DataTable data = KetNoi.Excutequerry(sql);
+            if (data.Rows.Count > 0)
+                return true;
+            return false;
+        }
         protected void btnThem_Click(object sender, EventArgs e)
         {
             string url = "";
@@ -85,10 +93,17 @@ namespace shoe
             }
             else
             {
-                String sql = "Insert into CTSP(maSp,mausac,masize,giaban,soluongton,anh) values('"+masp+"',N'" + txMauSac.Text + "',N'" + DropSize.SelectedValue + "',N'" + txGiaBan.Text + "',N'" + txSoLuong.Text + "',N'" + url + "')";
-                Response.Write("<script>alert('Thêm thành công!!')</script>");
-                DataTable data = KetNoi.Excutequerry(sql);
-                LoadGrCTSP();
+                if (checkSP(txMauSac.Text, int.Parse(DropSize.SelectedValue.ToString()))){
+                    Response.Write("<script>alert('Đã tồn tại sản phẩm')</script>");
+                    ClientScript.RegisterStartupScript(this.GetType(), "alert", "ShowAdd();", true);
+                }
+                else {
+                    String sql = "Insert into CTSP(maSp,mausac,masize,giaban,soluongton,anh) values('" + masp + "',N'" + txMauSac.Text + "',N'" + DropSize.SelectedValue + "',N'" + txGiaBan.Text + "',N'" + txSoLuong.Text + "',N'" + url + "')";
+
+                    DataTable data = KetNoi.Excutequerry(sql);
+                    Response.Write("<script>alert('Thêm thành công!!')</script>");
+                    LoadGrCTSP();
+                }
             }
         }
         string getsizeid(string name)

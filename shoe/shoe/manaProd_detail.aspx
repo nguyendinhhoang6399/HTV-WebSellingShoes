@@ -13,9 +13,11 @@
         <div>
             <div class="container mt-3">
                 <div class="row">
-                    <div class="col-md-4 text-center">
-                        <img src="img/logo1.JPG" alt="logo" width="100" height="100" />
-                        <img src="img/logoText.JPG" alt="text" width="170" height="170" />
+                      <div class="col-md-4 text-center">
+                     <a href="index.aspx">
+                        <img src="img/logo1.JPG" class="text-left" alt="logo" width="100" height="100" />
+                        <img src="img/logoText.JPG" class="text-left" alt="text" width="170" height="170" />
+                      </a>
                     </div>
                     <div class="col-md-4 text-center">
                         <h1 class="mt-5 text-warning">Manage Product Detail</h1>
